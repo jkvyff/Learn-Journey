@@ -4,7 +4,9 @@ import { useHelloLockQuery } from '../generated/graphql';
 interface Props { }
 
 export const HelloLock: React.FC<Props> = () => {
-    const { data, loading, error } = useHelloLockQuery();
+    const { data, loading, error } = useHelloLockQuery({
+        fetchPolicy: "network-only"
+    });
 
     if (loading) {
         return <div>Loading...</div>
