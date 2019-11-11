@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom';
-import { useMeQuery } from './generated/graphql';
+import { useMeQuery, useLogoutMutation } from './generated/graphql';
+import { setAccessToken } from './accessToken';
 
 interface Props {
 
@@ -8,6 +9,7 @@ interface Props {
 
 export const Header: React.FC<Props> = () => {
     const { data, loading } = useMeQuery();
+    const [logout, { client }] = useLogoutMutation();
 
     let body: any = null;
 
@@ -32,6 +34,15 @@ export const Header: React.FC<Props> = () => {
             </div>
             <div>
                 <Link to="/helloLock">hello Lock</Link>
+            </div>
+            <div>
+                {!loading && data && data.me ? (
+                    <button onClick={async () => {
+                        await logout();
+                        setAccessToken("");
+                        await client!.resetStore();
+                    }}>logout</button>
+                ) : null}
             </div>
             {body}
         </header>
