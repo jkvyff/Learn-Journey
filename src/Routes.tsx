@@ -6,13 +6,16 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { HelloLock } from './pages/HelloLock';
 import { Header } from './Header';
+import { Discover } from './pages/Discover';
 
 export const Routes: React.FC = () => {
   return <BrowserRouter>
     <div>
       <Header />
+      <div className="nav-buff"/>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/discover" component={Discover} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/helloLock" component={HelloLock} />

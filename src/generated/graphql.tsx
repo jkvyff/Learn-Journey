@@ -58,7 +58,6 @@ export type User = {
 
 export type HelloQueryVariables = {};
 
-
 export type HelloQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'hello'>

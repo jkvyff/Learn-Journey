@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useMeQuery, useLogoutMutation } from './generated/graphql';
 import { setAccessToken } from './accessToken';
 
@@ -22,18 +22,28 @@ export const Header: React.FC<Props> = () => {
     }
 
     return (
-        <header>
-            <div>
-                <Link to="/">home</Link>
+        <header className="nav">
+            <div className="nav-link first">
+                <NavLink exact to="/" activeClassName="active">Home</NavLink>
             </div>
-            <div>
-                <Link to="/register">register</Link>
+            <div className="nav-link">
+                <NavLink exact to="/discover" activeClassName="active">Discover</NavLink>
             </div>
-            <div>
-                <Link to="/login">login</Link>
+            <div className="nav-link">
+                <form>
+                    <input className="search"
+                    type="text"
+                    placeholder="Can't searching yet..."/>
+                </form>
             </div>
-            <div>
-                <Link to="/helloLock">hello Lock</Link>
+            <div className="nav-link right last">
+                <NavLink to="/helloLock" activeClassName="active">Hello Lock</NavLink>
+            </div>
+            <div className="nav-link right">
+                <NavLink to="/register" activeClassName="active">Register</NavLink>
+            </div>
+            <div className="nav-link right">
+                <NavLink to="/login" activeClassName="active">Login</NavLink>
             </div>
             <div>
                 {!loading && data && data.me ? (
@@ -44,7 +54,6 @@ export const Header: React.FC<Props> = () => {
                     }}>logout</button>
                 ) : null}
             </div>
-            {body}
         </header>
     );
 }

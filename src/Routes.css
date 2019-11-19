@@ -20,3 +20,9 @@
 .App-link {
   color: #09d3ac;
 }
+
+.nav-buff {
+  display: block;
+  height: 52px;
+  width: 100%;
+}
