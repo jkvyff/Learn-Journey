@@ -23,6 +23,9 @@ export type Mutation = {
   revokeRefreshTokensForUser: Scalars['Boolean'],
   login: LoginResponse,
   register: Scalars['Boolean'],
+  createResource: Resource,
+  updateResource: Scalars['Boolean'],
+  deleteResource: Scalars['Boolean'],
 };
 
 
@@ -39,7 +42,24 @@ export type MutationLoginArgs = {
 
 export type MutationRegisterArgs = {
   password: Scalars['String'],
+  username: Scalars['String'],
   email: Scalars['String']
+};
+
+
+export type MutationCreateResourceArgs = {
+  options: ResourceInput
+};
+
+
+export type MutationUpdateResourceArgs = {
+  input: ResourceUpdateInput,
+  id: Scalars['Int']
+};
+
+
+export type MutationDeleteResourceArgs = {
+  id: Scalars['Int']
 };
 
 export type Query = {
@@ -48,15 +68,45 @@ export type Query = {
   helloLock: Scalars['String'],
   users: Array<User>,
   me?: Maybe<User>,
+  resources: Array<Resource>,
+};
+
+export type Resource = {
+   __typename?: 'Resource',
+  id: Scalars['Int'],
+  title: Scalars['String'],
+  author: Scalars['String'],
+  exerpt: Scalars['String'],
+  resolved_url: Scalars['String'],
+  time_length: Scalars['Int'],
+};
+
+export type ResourceInput = {
+  title: Scalars['String'],
+  author: Scalars['String'],
+  exerpt: Scalars['String'],
+  date_updated: Scalars['String'],
+  resolved_url: Scalars['String'],
+  time_length: Scalars['Int'],
+};
+
+export type ResourceUpdateInput = {
+  title: Scalars['String'],
+  author?: Maybe<Scalars['String']>,
+  exerpt?: Maybe<Scalars['String']>,
+  resolved_url: Scalars['String'],
+  time_length?: Maybe<Scalars['Int']>,
 };
 
 export type User = {
    __typename?: 'User',
   id: Scalars['Int'],
   email: Scalars['String'],
+  username: Scalars['String'],
 };
 
 export type HelloQueryVariables = {};
+
 
 export type HelloQuery = (
   { __typename?: 'Query' }
@@ -84,7 +134,7 @@ export type LoginMutation = (
     & Pick<LoginResponse, 'accessToken'>
     & { user: (
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'email'>
+      & Pick<User, 'id' | 'username' | 'email'>
     ) }
   ) }
 );
@@ -104,12 +154,13 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email'>
+    & Pick<User, 'id' | 'email' | 'username'>
   )> }
 );
 
 export type RegisterMutationVariables = {
   email: Scalars['String'],
+  username: Scalars['String'],
   password: Scalars['String']
 };
 
@@ -119,6 +170,17 @@ export type RegisterMutation = (
   & Pick<Mutation, 'register'>
 );
 
+export type ResourcesQueryVariables = {};
+
+
+export type ResourcesQuery = (
+  { __typename?: 'Query' }
+  & { resources: Array<(
+    { __typename?: 'Resource' }
+    & Pick<Resource, 'id' | 'title' | 'author' | 'exerpt' | 'resolved_url' | 'time_length'>
+  )> }
+);
+
 export type UsersQueryVariables = {};
 
 
@@ -126,7 +188,7 @@ export type UsersQuery = (
   { __typename?: 'Query' }
   & { users: Array<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email'>
+    & Pick<User, 'id' | 'username' | 'email'>
   )> }
 );
 
@@ -197,6 +259,7 @@ export const LoginDocument = gql`
     accessToken
     user {
       id
+      username
       email
     }
   }
@@ -262,6 +325,7 @@ export const MeDocument = gql`
   me {
     id
     email
+    username
   }
 }
     `;
@@ -291,8 +355,8 @@ export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
 export const RegisterDocument = gql`
-    mutation Register($email: String!, $password: String!) {
-  register(email: $email, password: $password)
+    mutation Register($email: String!, $username: String!, $password: String!) {
+  register(email: $email, username: $username, password: $password)
 }
     `;
 export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
@@ -311,6 +375,7 @@ export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMuta
  * const [registerMutation, { data, loading, error }] = useRegisterMutation({
  *   variables: {
  *      email: // value for 'email'
+ *      username: // value for 'username'
  *      password: // value for 'password'
  *   },
  * });
@@ -321,10 +386,48 @@ export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookO
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const ResourcesDocument = gql`
+    query Resources {
+  resources {
+    id
+    title
+    author
+    exerpt
+    resolved_url
+    time_length
+  }
+}
+    `;
+
+/**
+ * __useResourcesQuery__
+ *
+ * To run a query within a React component, call `useResourcesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useResourcesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useResourcesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useResourcesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ResourcesQuery, ResourcesQueryVariables>) {
+        return ApolloReactHooks.useQuery<ResourcesQuery, ResourcesQueryVariables>(ResourcesDocument, baseOptions);
+      }
+export function useResourcesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ResourcesQuery, ResourcesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ResourcesQuery, ResourcesQueryVariables>(ResourcesDocument, baseOptions);
+        }
+export type ResourcesQueryHookResult = ReturnType<typeof useResourcesQuery>;
+export type ResourcesLazyQueryHookResult = ReturnType<typeof useResourcesLazyQuery>;
+export type ResourcesQueryResult = ApolloReactCommon.QueryResult<ResourcesQuery, ResourcesQueryVariables>;
 export const UsersDocument = gql`
     query Users {
   users {
     id
+    username
     email
   }
 }

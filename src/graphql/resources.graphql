@@ -1,0 +1,10 @@
+query Resources {
+	resources {
+		id
+		title
+		author
+		exerpt
+		resolved_url
+		time_length
+	}
+}

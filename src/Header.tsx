@@ -3,9 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useMeQuery, useLogoutMutation } from './generated/graphql';
 import { setAccessToken } from './accessToken';
 
-interface Props {
-
-}
+interface Props {}
 
 export const Header: React.FC<Props> = () => {
     const { data, loading } = useMeQuery();
@@ -54,6 +52,7 @@ export const Header: React.FC<Props> = () => {
                     }}>logout</button>
                 ) : null}
             </div>
+            {body}
         </header>
     );
 }
