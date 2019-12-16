@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useResourcesQuery } from '../generated/graphql';
-import SimpleResource from '../components/simpleResource';
+import SimpleCard from '../components/simpleCard';
 
 interface Props { }
 
@@ -23,13 +23,13 @@ export const Discover: React.FC<Props> = () => {
     return (
         <div>
             <div>Discoveries to be made:</div>
-            <div>{data.resources.map((resource => {
-                    return (
-                        <div key={resource.id}>
-                            <SimpleResource resource={resource}/>
-                        </div>
-                    );
-                }))}</div>
+            <div className="flex justify-start flex-wrap ml-32 mr-32">{data.resources.map((resource => {
+                return (
+                    <div key={resource.id}>
+                        <SimpleCard resource={resource}/>
+                    </div>
+                );
+            }))}</div>
         </div>
     );
 }
