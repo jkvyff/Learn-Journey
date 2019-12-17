@@ -71,6 +71,12 @@ export type Query = {
   resources: Array<Resource>,
 };
 
+
+export type QueryResourcesArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  take?: Maybe<Scalars['Int']>
+};
+
 export type Resource = {
    __typename?: 'Resource',
   id: Scalars['Int'],

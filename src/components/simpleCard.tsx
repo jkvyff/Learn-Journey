@@ -2,15 +2,22 @@ import React from 'react';
 import mountain from '../images/mountains.jpeg';
 
 export default function SimpleResource(data: any) {
-    const { title, author, exerpt, resolved_url, time_length } = data.resource
+    const { title, author, exerpt, resolved_url, sjs, time_length } = data.resource
 
     const handleOnClick = () => {
         window.open(resolved_url, "_blank");
     }
 
+    const colors: string[] = ['indigo', 'red', 'orange', 'blue', 'green', 'teal', 'purple'];
+    const rColor: string = colors[Math.floor(Math.random() * colors.length)];
+
     return (
         <div onClick={() => {handleOnClick()}} className="max-w-sm rounded overflow-hidden shadow-lg float-left m-3">
-            <img className="w-full h-48 object-cover" src={mountain} alt="Sunset in the mountains"/>
+            {typeof sjs !== undefined ? (
+                <div className={`w-full h-48 bg-${rColor}-400 text-${rColor}-200 text-center font-serif text-10xl font-bold`}>{title}</div>
+            ) : (
+                <img className="w-full h-48 object-cover" src={sjs} alt="Sunset in the mountains"/>
+            )}
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{title} - {author}</div>
                 <p className="text-gray-700 text-base">{exerpt}</p>
