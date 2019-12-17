@@ -10934,8 +10934,8 @@ video {
   color: #702459;
 }
 
-.text-10xl {
-  font-size: 10rem;
+.text-8xl {
+  font-size: 8rem;
 }
 
 .italic {
@@ -11487,6 +11487,13 @@ code {
 
 .hidden {
   display: none;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (min-width: 640px) {
@@ -21797,8 +21804,8 @@ code {
     color: #702459;
   }
 
-  .sm\:text-10xl {
-    font-size: 10rem;
+  .sm\:text-8xl {
+    font-size: 8rem;
   }
 
   .sm\:italic {
@@ -32523,8 +32530,8 @@ code {
     color: #702459;
   }
 
-  .md\:text-10xl {
-    font-size: 10rem;
+  .md\:text-8xl {
+    font-size: 8rem;
   }
 
   .md\:italic {
@@ -43249,8 +43256,8 @@ code {
     color: #702459;
   }
 
-  .lg\:text-10xl {
-    font-size: 10rem;
+  .lg\:text-8xl {
+    font-size: 8rem;
   }
 
   .lg\:italic {
@@ -53975,8 +53982,8 @@ code {
     color: #702459;
   }
 
-  .xl\:text-10xl {
-    font-size: 10rem;
+  .xl\:text-8xl {
+    font-size: 8rem;
   }
 
   .xl\:italic {
@@ -54392,4 +54399,3 @@ code {
     z-index: auto;
   }
 }
-  
