@@ -12,7 +12,6 @@ export const Routes: React.FC = () => {
   return <BrowserRouter>
     <div>
       <Header />
-      <div className="nav-buff"/>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/discover" component={Discover} />

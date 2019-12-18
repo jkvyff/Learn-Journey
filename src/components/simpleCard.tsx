@@ -1,5 +1,4 @@
 import React from 'react';
-import mountain from '../images/mountains.jpeg';
 
 export default function SimpleResource(data: any) {
     const { title, author, exerpt, resolved_url, sjs, time_length } = data.resource
@@ -12,14 +11,15 @@ export default function SimpleResource(data: any) {
     const rColor: string = colors[Math.floor(Math.random() * colors.length)];
 
     return (
-        <div onClick={() => {handleOnClick()}} className="max-w-sm rounded overflow-hidden shadow-lg float-left m-3">
+        <div className="max-w-sm rounded overflow-hidden shadow-lg float-left m-3">
             {typeof sjs !== undefined ? (
-                <div className={`w-full h-48 bg-${rColor}-400 text-${rColor}-200 text-center font-serif text-8xl font-bold whitespace-no-wrap`}>{title}</div>
+                <div onClick={() => {handleOnClick()}} className={`w-full h-48 bg-${rColor}-400 text-${rColor}-200 text-center font-serif text-8xl font-bold whitespace-no-wrap`}>{title}</div>
             ) : (
-                <img className="w-full h-48 object-cover" src={sjs} alt="Sunset in the mountains"/>
+                <img onClick={() => {handleOnClick()}} className="w-full h-48 object-cover" src={sjs} alt="Sunset in the mountains"/>
             )}
-            <div className="px-6 py-4 h-24">
-                <div className="font-bold text-xl mb-2">{title} - {author}</div>
+            <div className="px-6 py-4 h-30">
+                <div className="font-bold text-lg">{title}</div>
+                <div className="text-md mb-2">{author}</div>
                 <div className="text-gray-700 text-base line-clamp">{exerpt}</div>
             </div>
             <div className="px-6 py-4">

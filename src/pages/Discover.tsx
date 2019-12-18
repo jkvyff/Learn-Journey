@@ -21,8 +21,8 @@ export const Discover: React.FC<Props> = () => {
     }
 
     return (
-        <div>
-            <div>Discoveries to be made:</div>
+        <>
+            <div className="flex justify-start flex-wrap ml-32 mr-32">Discoveries to be made:</div>
             <div className="flex justify-start flex-wrap ml-32 mr-32">{data.resources.map((resource => {
                 return (
                     <div key={resource.id}>
@@ -30,6 +30,6 @@ export const Discover: React.FC<Props> = () => {
                     </div>
                 );
             }))}</div>
-        </div>
+        </>
     );
 }
