@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react';
 import { useRegisterMutation } from '../generated/graphql';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, NavLink } from 'react-router-dom';
 
 
 export const Register: React.FC<RouteComponentProps> = ({ history }) => {
@@ -28,28 +28,39 @@ export const Register: React.FC<RouteComponentProps> = ({ history }) => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div>
-				<input
-					value={username}
-					placeholder="Username"
-					onChange={handleUsername} />
-			</div>
-			<div>
-				<input
-					type="email"
-					value={email}
-					placeholder="Email"
-					onChange={handleEmail} />
-			</div>
-			<div>
-				<input
-					type="password"
-					value={password}
-					placeholder="Password"
-					onChange={handlePassword} />
-			</div>
-			<button>Register</button>
-		</form>
+		<div className="min-h-screen mx-auto h-full flex justify-center">
+            <form onSubmit={handleSubmit} className="w-full max-w-sm">
+				<div className="mb-4 mt-64">
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Username</label>
+                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+						type="text"
+						value={username}
+						placeholder="Username"
+						onChange={handleUsername} />
+				</div>
+				<div className="mb-4">
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
+                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+						type="email"
+						value={email}
+						placeholder="Email"
+						onChange={handleEmail} />
+				</div>
+				<div className="mb-4">
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password</label>
+                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+						type="password"
+						value={password}
+						placeholder="Password"
+						onChange={handlePassword} />
+				</div>
+				<div className="text-center">
+                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-3">Register</button>
+                    <div>Dont have an account? 
+                        <NavLink className="text-blue-500" to="/login" activeClassName="active"> Login Here</NavLink>
+                    </div>
+                </div>
+			</form>
+        </div>
 	);
 }

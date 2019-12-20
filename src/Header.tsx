@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useMeQuery, useLogoutMutation } from './generated/graphql';
 import { setAccessToken } from './accessToken';
@@ -36,9 +36,6 @@ export const Header: React.FC<Props> = () => {
             </div>
             <div className="nav-link right last">
                 <NavLink to="/helloLock" activeClassName="active">Hello Lock</NavLink>
-            </div>
-            <div className="nav-link right">
-                <NavLink to="/register" activeClassName="active">Register</NavLink>
             </div>
             <div className="nav-link right">
                 <NavLink to="/login" activeClassName="active">Login</NavLink>
