@@ -33,6 +33,7 @@ export const Register: React.FC<RouteComponentProps> = ({ history }) => {
 				<div className="mb-4 mt-64">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Username</label>
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+						autoComplete="username"
 						type="text"
 						value={username}
 						placeholder="Username"
@@ -41,6 +42,7 @@ export const Register: React.FC<RouteComponentProps> = ({ history }) => {
 				<div className="mb-4">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+						autoComplete="email"
 						type="email"
 						value={email}
 						placeholder="Email"
@@ -49,6 +51,7 @@ export const Register: React.FC<RouteComponentProps> = ({ history }) => {
 				<div className="mb-4">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password</label>
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+						autoComplete="new-password"
 						type="password"
 						value={password}
 						placeholder="Password"
@@ -56,7 +59,7 @@ export const Register: React.FC<RouteComponentProps> = ({ history }) => {
 				</div>
 				<div className="text-center">
                     <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-3">Register</button>
-                    <div>Dont have an account? 
+                    <div>Already have an account? 
                         <NavLink className="text-blue-500" to="/login" activeClassName="active"> Login Here</NavLink>
                     </div>
                 </div>

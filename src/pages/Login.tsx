@@ -49,6 +49,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
                 <div className="mb-4 my-64">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+                        autoComplete="email"
                         aria-label="Email"
                         type="email"
                         value={email}
@@ -58,6 +59,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
                 <div className="mb-4">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password</label>
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white"
+                        autoComplete="old-password"
                         aria-label="Password"
                         type="password"
                         value={password}
