@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLoginMutation, MeDocument, MeQuery } from '../generated/graphql';
 import { RouteComponentProps, NavLink } from 'react-router-dom';
 import { setAccessToken } from '../accessToken';
+import paper from '../images/login-panel.jpg'
 
 
 export const Login: React.FC<RouteComponentProps> = ({ history }) => {
@@ -44,7 +45,8 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
 
 
     return (
-        <div className="min-h-screen mx-auto h-full flex justify-center">
+        <>
+        <div className="flex min-h-screen float-left w-2/5 h-full justify-center">
             <form onSubmit={handleSubmit} className="w-full max-w-sm">
                 <div className="mb-4 my-64">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
@@ -74,5 +76,7 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
                 </div>
             </form>
         </div>
+        <img src={paper} alt="paper on table" className="flex float-left min-h-screen w-3/5 object-cover"/>
+        </>
     );
 }
