@@ -20,7 +20,6 @@ code {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: #222;
   position: fixed;
   top: 0;
