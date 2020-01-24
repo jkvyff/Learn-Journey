@@ -16,38 +16,6 @@ code {
     monospace;
 }
 
-.nav {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: #222;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  border-bottom: 2px solid #444;
-}
-
-
-.nav-link.first a{
-  margin-left: 5%;
-}
-
-.nav-link.right a {
-  float: right;
-}
-
-.nav-link.right.last a{
-  margin-right: 5%;
-}
-
-.nav-link a:hover {
-  background-color: #111;
-}
-
-.nav-link a.active {
-  border-bottom: 4px solid orangered;
-}
-
 .hidden {
   display: none;
 }

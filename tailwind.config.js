@@ -5,6 +5,8 @@ module.exports = {
       '8xl': '8rem'
     }
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'active']
+  },
   plugins: []
 }
