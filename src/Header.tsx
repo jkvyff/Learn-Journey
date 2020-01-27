@@ -10,28 +10,19 @@ export const Header: React.FC<Props> = () => {
     const [logout, { client }] = useLogoutMutation();
     const [isOpen, setIsOpen] = useState(false);
 
-    // let body: any = null;
-
-    // if (loading) {
-    //     body = null
-    // } else if (data && data.me) {
-    //     body = <div>You are logged in as: {data.me.email}</div>
-    // } else {
-    //     body = <div>You are not logged in</div>
-    // }
     const handleToggle = (ev: any) => {
         setIsOpen(!isOpen)
     }
 
     return (
         <header className="flex items-center flex-wrap bg-gray-800">
-            <div className="text-gray-200 flex-initial ml-32 px-2">
+            <div className="text-gray-200 flex-initial ml-4 px-2 md:ml-32">
                 <NavLink exact to="/" activeClassName="active">Home</NavLink>
             </div>
             <div className="text-gray-200 flex-initial px-2">
                 <NavLink exact to="/discover" activeClassName="active">Discover</NavLink>
             </div>
-            <div className="text-gray-200 flex-1 ml-4 mr-48">
+            <div className="text-gray-200 flex-1 mx-4 md:mr-12 lg:mr-48">
                 <form>
                     <input className="search w-full rounded flex-1 py-1 px-2"
                     type="text"
@@ -44,7 +35,7 @@ export const Header: React.FC<Props> = () => {
             <div className="text-gray-200 flex-initial px-2">
                 <NavLink to="/login" activeClassName="active">Login</NavLink>
             </div>
-            <div className="px-2 py-3 mr-32">
+            <div className="px-2 py-3 mr-4 md:mr-32">
                 <button onClick={handleToggle} className="z-10 block h-8 w-8 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
                     <img className="h-full w-full object-cover" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80" alt="Your avatar"/>
                 </button>
